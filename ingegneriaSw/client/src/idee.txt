@@ -1,0 +1,7 @@
+creare una pagina con la creazione dell'evento 
+puo creare evento solo chi è loggato preferibilmente solo gli admin 
+pagina principale con pressentazione etc
+pagina con eventi con tornei ai quali ci si puo prenotare 
+sviluppo tornei (forse o non forse)
+
+barra applicazioni in alto
