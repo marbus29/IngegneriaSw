@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Mail, Lock, User, MapPin, Trophy, Users } from 'lucide-react';
 import api from '../context/AxiosConfig';
-import { MapPin, Trophy, Users } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+
 
 export default function ListaTornei() {
     // 1. Stato per memorizzare l'array dei tornei
@@ -11,8 +14,8 @@ export default function ListaTornei() {
     useEffect(() => {
         const fetchTornei = async () => {
             try {
-                // Chiamata GET: l'URL finale sarà baseURL + '/lista-tornei'
-                // Assicurati che nel backend la rotta sia router.get('/lista-tornei', ...)
+                // Chiamata GET: l'URL finale sarà baseURL + '/tornei'
+                // Assicurati che nel backend la rotta sia router.get('/tornei', ...)
                 const response = await api.get('/tornei');
 
                 console.log("Dati ricevuti:", response.data);

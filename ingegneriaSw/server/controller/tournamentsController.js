@@ -1,10 +1,10 @@
 const tournamentsService = require('../service/tournamentsService');
 exports.getAllTournaments = async (req, res) => {
     try {
-        const tornei = await Tournament.find(); // Recupera tutti i documenti dal DB
+        const tornei = await tournamentsService.getAllTournaments();
         res.status(200).json(tornei);
-    } catch (error) {
-        res.status(500).json({ message: "Errore nel recupero dei tornei", error: error.message });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
 };
 exports.createTournament = async (req, res) => {

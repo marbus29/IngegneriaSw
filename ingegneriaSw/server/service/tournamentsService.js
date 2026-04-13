@@ -1,4 +1,5 @@
 
+const { get } = require('mongoose');
 const Tournament = require('../models/Tournaments');
 
 exports.createTournament = async (tournamentData) => {
@@ -9,5 +10,5 @@ exports.createTournament = async (tournamentData) => {
 };
 
 exports.getAllTournaments = async () => {
-    return await Tournament.find({}); 
+    return await Tournament.find({});
 };
