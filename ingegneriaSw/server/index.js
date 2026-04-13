@@ -5,6 +5,7 @@ require('dotenv').config();
 
 // Importiamo le rotte
 const userRoutes = require('./routes/userRoutes');
+const tournamentsRoutes = require('./routes/tournamentsRoutes');
 
 const app = express();
 
@@ -20,6 +21,7 @@ mongoose.connect(process.env.MONGO_URI)
 // --- USO DELLE ROTTE ---
 // Tutte le rotte in userRoutes inizieranno con /api
 app.use('/api', userRoutes); 
+app.use('/api', tournamentsRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

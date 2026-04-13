@@ -6,6 +6,7 @@ import CreaEvento from './pages/CreaEvento';
 // Importa la tua nuova Navbar
 import { AuthProvider } from './context/AuthContext'; // Importa il Provider che abbiamo creato
 import Navbar from './components/Navbar'; // Importa la tua nuova Navbar
+import ListaTornei from './pages/ListaTornei';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/homepage" element={<HomePage />} />
             <Route path="/crea-evento" element={<CreaEvento />} />
+            <Route path="/tornei" element={<ListaTornei />} />
             {/* Aggiungi qui altre rotte come /campetti, /prenotazioni, ecc. */}
           </Routes>
         </main>

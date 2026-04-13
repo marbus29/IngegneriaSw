@@ -2,7 +2,6 @@ import React, { createContext, useState, useEffect, useContext, ReactNode } from
 
 // Definisci come è fatto l'utente nel tuo database
 interface User {
-  _id: string;
   email: string;
 }
 
@@ -23,7 +22,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const savedUser = localStorage.getItem('user');
-    
+
     if (savedUser) {
       try {
         setUser(JSON.parse(savedUser));
@@ -38,7 +37,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const login = (userData: User) => {
     setUser(userData);
     localStorage.setItem('user', JSON.stringify(userData));
-  };    
+  };
 
   const logout = () => {
     setUser(null);
