@@ -5,6 +5,7 @@ interface User {
   email: string;
 }
 
+
 // Definisci cosa contiene il Context
 interface AuthContextType {
   user: User | null;

@@ -7,6 +7,8 @@ exports.getAllTournaments = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
+
+
 exports.createTournament = async (req, res) => {
     try {
         // Estraiamo i dati dal body inviato dal frontend
@@ -18,5 +20,18 @@ exports.createTournament = async (req, res) => {
             message: "Errore nella creazione torneo", 
             error: error.message 
         });
+    }
+};
+
+
+exports.prenotaTorneo = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { email } = req.body;
+
+        const aggiornato = await tournamentsService.prenotazione(id, email);
+        res.status(200).json(aggiornato);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
     }
 };

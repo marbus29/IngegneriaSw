@@ -168,7 +168,7 @@ export default function CreaEvento() {
 
                     <button
                         type="submit"
-                        className="w-full bg-gradient-to-r from-blue-600 to-blue-400 text-white py-2.5 rounded-xl font-bold shadow-md hover:brightness-110 active:scale-95 transition-all uppercase tracking-widest text-xs"
+                        className="w-full bg-linear-to-r from-blue-600 to-blue-400 text-white py-2.5 rounded-xl font-bold shadow-md hover:brightness-110 active:scale-95 transition-all uppercase tracking-widest text-xs"
                     >
                         Crea Evento
                     </button>

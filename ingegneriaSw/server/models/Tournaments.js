@@ -8,8 +8,7 @@ const TournamentSchema = new mongoose.Schema({
   organizzatore: { type: String, required: true },
   email:{type: String, required: true, unique: true},
   postiDisponibili: { type: Number, required: true },
-  //partecipanti: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-
+  partecipanti: { type: [String], default: [] },
 });
 
 module.exports = mongoose.model('Tournament', TournamentSchema);

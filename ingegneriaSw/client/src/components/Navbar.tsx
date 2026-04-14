@@ -29,34 +29,34 @@ const Navbar = () => {
         <Link to="/tornei" className="text-gray-600 hover:text-purple-600 font-medium transition">Tornei</Link>
 
         {/* 2. Logica Condizionale: Utente Loggato vs Ospite */}
-        {user ? (
-          <div className="flex items-center gap-4 border-l pl-8 ml-2 border-gray-100">
-            <div className="flex items-center gap-2 text-gray-700">
-              <User size={18} className="text-purple-600" />
-              <span className="font-semibold">{user.email}</span>
+          {user ? (
+            <div className="flex items-center gap-4 border-l pl-8 ml-2 border-gray-100">
+              <div className="flex items-center gap-2 text-gray-700">
+                <User size={18} className="text-purple-600" />
+                <span className="font-semibold">{user.email}</span>
+              </div>
+              <button
+                onClick={logout}
+                className="flex items-center gap-1 text-red-500 hover:bg-red-50 px-3 py-1.5 rounded-lg transition text-sm font-medium"
+              >
+                <LogOut size={16} />
+                Esci
+              </button>
             </div>
-            <button
-              onClick={logout}
-              className="flex items-center gap-1 text-red-500 hover:bg-red-50 px-3 py-1.5 rounded-lg transition text-sm font-medium"
+          ) : (
+            <Link
+              to="/login"
+              className="bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition font-medium"
             >
-              <LogOut size={16} />
-              Esci
-            </button>
-          </div>
-        ) : (
-          <Link
-            to="/login"
-            className="bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition font-medium"
-          >
-            Accedi
-          </Link>
-        )}
+              Accedi
+            </Link>
+          )}
       </div>
 
       {/* Mobile Toggle */}
       <button
         className="md:hidden p-2 text-gray-600"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => setIsOpen(!isOpen)}  
       >
         <Menu />
       </button>

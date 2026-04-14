@@ -1,16 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Mail, Lock, User, MapPin, Trophy, Users } from 'lucide-react';
 import api from '../context/AxiosConfig';
-import { useAuth } from '../context/AuthContext';
+import { AuthContext, useAuth } from '../context/AuthContext';
 
 
 export default function ListaTornei() {
     // 1. Stato per memorizzare l'array dei tornei
-    const [tornei, setTornei] = useState([]);
+    const [tornei, setTornei] = useState<any[]>([]);
     // 2. Stato per gestire il caricamento (opzionale ma consigliato)
     const [loading, setLoading] = useState(true);
 
+    // Importa l'hook per usare il contesto
+    const authContext = useContext(AuthContext);
+    const user = authContext?.user;
+
+    // Funzione per gestire la prenotazione
+    const handlePrenotazione = async (torneoId: string) => {
+        if (!user) return alert("Devi essere loggato!");
+
+        try {
+            // Chiamata al backend passando la mail dell'utente
+            const response = await api.post(`/tornei/${torneoId}/prenota`, {
+                email: user.email
+            });
+
+            // Aggiorniamo lo stato locale per far vedere subito il cambio posti
+            // Aggiungiamo (prev: any[])
+            setTornei((prev: any[]) => prev.map(t => t._id === torneoId ? response.data : t));
+            alert("Prenotazione effettuata!");
+        } catch (error: any) {
+            alert(error.response?.data?.message || "Errore durante la prenotazione");
+        }
+    };
     useEffect(() => {
         const fetchTornei = async () => {
             try {
@@ -58,9 +80,17 @@ export default function ListaTornei() {
                             </div>
                         </div>
 
-                        <button className="w-full mt-4 bg-blue-600 text-white py-2 rounded-xl font-semibold hover:bg-blue-700 transition-colors">
-                            Iscriviti
-                        </button>
+                        {user ? (
+                            <button
+                                onClick={() => handlePrenotazione(torneo._id)}
+                                disabled={torneo.postiDisponibili <= 0 || torneo.partecipanti.includes(user.email)}
+                                className="mt-4 w-full bg-blue-600 text-white py-2 rounded-xl hover:bg-blue-700 disabled:bg-gray-400"
+                            >
+                                {torneo.partecipanti.includes(user.email) ? "Già prenotato" : "Prenotati ora"}
+                            </button>
+                        ) : (
+                            <p className="mt-4 text-xs text-center text-red-500 italic">Accedi per prenotarti</p>
+                        )}
                     </div>
                 ))}
             </div>
